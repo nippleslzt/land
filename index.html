@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Status Checker for Zelenka.guru</title>
+    <style>
+        body {
+            background-color: #272727; /* Dark grey background */
+            color: #ffffff; /* White text for better readability */
+            font-family: Arial, sans-serif; /* Sets a clean, sans-serif font */
+            text-align: center; /* Centers text */
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #title {
+            color: #FF204F; /* Bold pink color */
+            font-size: 48px; /* Large font size */
+            font-weight: bold; /* Bold font style */
+            margin-bottom: 20px; /* Space below the title */
+        }
+        #status {
+            font-size: 24px; /* Readable text size */
+            margin-top: 20px; /* Space above the status text */
+        }
+    </style>
+</head>
+<body>
+    <div id="title">nipples</div>
+    <div id="status">Checking status...</div>
+
+    <script>
+        const apiURL = 'https://isitdown.site/api/v3/zelenka.guru';
+
+        fetch(apiURL)
+            .then(response => response.json())
+            .then(data => {
+                const statusElement = document.getElementById('status');
+                if (data.isitdown) {
+                    statusElement.innerHTML = 'zelenka.guru is currently DOWN for everyone.';
+                } else {
+                    statusElement.innerHTML = 'zelenka.guru is UP. It\'s just you.';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching the API:', error);
+                document.getElementById('status').innerHTML = 'Error checking the site status.';
+            });
+    </script>
+</body>
+</html>
